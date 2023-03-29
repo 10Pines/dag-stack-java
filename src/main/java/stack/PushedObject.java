@@ -1,21 +1,23 @@
 package stack;
 
-public class PushedObject extends StackNode {
-    private final Object element;
-    private final StackNode previous;
+import java.util.function.Function;
 
-    public PushedObject(Object element, StackNode previous) {
+public class PushedObject<E> extends StackNode<E> {
+    private final E element;
+    private final StackNode<E> previous;
+
+    public PushedObject(E element, StackNode<E> previous) {
         this.element = element;
         this.previous = previous;
     }
 
     @Override
-    public Object element() {
+    public E element() {
         return element;
     }
 
     @Override
-    public StackNode previous() {
+    public StackNode<E> previous() {
         return previous;
     }
 
@@ -40,5 +42,12 @@ public class PushedObject extends StackNode {
     @Override
     public Boolean isEmpty() {
         return false;
+    }
+
+    @Override
+    public <R> Stack<R> mapToStack(Function<E, R> elementMapping) {
+        Stack<R> mappedStack = previous.mapToStack(elementMapping);
+        mappedStack.push(elementMapping.apply(element));
+        return mappedStack;
     }
 }

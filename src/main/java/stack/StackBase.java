@@ -1,13 +1,15 @@
 package stack;
 
-public class StackBase extends StackNode {
+import java.util.function.Function;
+
+public class StackBase<E> extends StackNode<E> {
     @Override
-    public Object element() {
+    public E element() {
         throw new RuntimeException(Stack.ERROR_STACK_EMPTY_DESCRIPTION);
     }
 
     @Override
-    public StackNode previous() {
+    public StackNode<E> previous() {
         throw new RuntimeException(Stack.ERROR_STACK_EMPTY_DESCRIPTION);
     }
 
@@ -24,5 +26,10 @@ public class StackBase extends StackNode {
     @Override
     public Boolean isEmpty() {
         return true;
+    }
+
+    @Override
+    public <R> Stack<R> mapToStack(Function<E, R> elementMapping) {
+        return new Stack<>();
     }
 }

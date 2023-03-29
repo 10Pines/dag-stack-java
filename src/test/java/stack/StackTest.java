@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class StackTest {
     @Test
     public void newStacksMustBeEmpty() {
-        var stack = new Stack();
+        var stack = new Stack<>();
 
         assertTrue(stack.isEmpty());
     }
@@ -208,7 +208,44 @@ public class StackTest {
                 Stack.ERROR_STACK_EMPTY_DESCRIPTION);
     }
 
-    private Stack emptyStack() {
-        return new Stack();
+    @Test
+    public void mappingAnEmptyStackReturnsANewEmptyStack() {
+        var stack = emptyStack();
+
+        var mappedStack = stack.map(element -> fail());
+
+        assertTrue(mappedStack.isEmpty());
+        assertNotSame(stack, mappedStack);
+    }
+
+    @Test
+    public void mappingAOneElementStackReturnsANewStackWithThatElementMapped() {
+        var stack = this.<String>emptyStack();
+        stack.push("element");
+
+        Stack<Character> mappedStack = stack.map((String element) -> element.charAt(0));
+
+        assertNotEquals(stack, mappedStack);
+        assertEquals(1, mappedStack.size());
+        assertEquals('e', mappedStack.top());
+    }
+
+    @Test
+    public void mappingAStackWithMoreThanOneElementReturnsAStackWithAllElementsMappedKeepingTheOrder() {
+        Stack<Integer> stack = emptyStack();
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+
+        Stack<String> mappedStack = stack.map(element -> String.valueOf(2 * element));
+
+        assertEquals("6", mappedStack.pop());
+        assertEquals("4", mappedStack.pop());
+        assertEquals("2", mappedStack.pop());
+        assertTrue(mappedStack.isEmpty());
+    }
+
+    private <E> Stack<E> emptyStack() {
+        return new Stack<>();
     }
 }
