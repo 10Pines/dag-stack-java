@@ -1,0 +1,15 @@
+# OSX-specific
+**/.DS_Store
+
+# IntelliJ-specific
+.idea/
+
+# For Java
+target/
+.attach_pid*
+
+# For Python
+**/__pycache__/
+
+# For Javascript
+node_modules/
