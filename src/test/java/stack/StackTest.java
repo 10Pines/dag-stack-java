@@ -280,6 +280,14 @@ public class StackTest {
         assertEquals("» 321", result);
     }
 
+    @StaticTest
+    public <E> void theStaticReturnTypeOfTopIsTheSameAsTheOneOfThePushedObject(E anObject) {
+        var stack = this.<E>emptyStack();
+        stack.push(anObject);
+
+        this.<E>mustBeTheStaticTypeOf(stack.pop());
+    }
+
     private <E> Stack<E> emptyStack() {
         return new Stack<>();
     }
