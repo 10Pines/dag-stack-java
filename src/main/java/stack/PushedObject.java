@@ -54,6 +54,6 @@ public class PushedObject<E> extends StackNode<E> {
 
     @Override
     public <R> R reduce(R initialValue, BiFunction<R, E, R> reducer) {
-        return reducer.apply(initialValue, element);
+        return previous.reduce(reducer.apply(initialValue, element), reducer);
     }
 }

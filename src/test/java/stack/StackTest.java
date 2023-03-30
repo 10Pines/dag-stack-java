@@ -283,6 +283,18 @@ public class StackTest {
         assertEquals("01", result);
     }
 
+    @Test
+    public void reducingAStackWithMoreThanOneElementReturnsTheCombinationOfTheElementsStartingAtBaseWithTheInitialValue() {
+        Stack<String> stack = emptyStack();
+        stack.push("1");
+        stack.push("2");
+        stack.push("3");
+
+        var result = stack.reduce("» ", (partialResult, element) -> partialResult.concat(element));
+
+        assertEquals("» 321", result);
+    }
+
     private <E> Stack<E> emptyStack() {
         return new Stack<>();
     }
