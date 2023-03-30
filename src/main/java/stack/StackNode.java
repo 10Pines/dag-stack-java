@@ -1,5 +1,6 @@
 package stack;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public abstract class StackNode<E> {
@@ -14,4 +15,11 @@ public abstract class StackNode<E> {
     public abstract Boolean isEmpty();
 
     public abstract <R> Stack<R> mapToStack(Function<E, R> elementMapping);
+
+    public <R> R reduce(R initialValue, BiFunction<R, E, R> reducer) {
+        if (this.isEmpty())
+            return initialValue;
+
+        return reducer.apply(initialValue, this.element());
+    }
 }

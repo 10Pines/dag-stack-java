@@ -38,9 +38,6 @@ public class Stack<E> {
     }
 
     public <R> R reduce(R initialValue, BiFunction<R, E, R> reducer) {
-        if (isEmpty())
-            return initialValue;
-
-        return reducer.apply(initialValue, top());
+        return topNode.reduce(initialValue, reducer);
     }
 }
