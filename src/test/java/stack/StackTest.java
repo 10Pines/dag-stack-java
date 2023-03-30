@@ -245,6 +245,15 @@ public class StackTest {
         assertTrue(mappedStack.isEmpty());
     }
 
+    @Test
+    public void reducingAnEmptyStackReturnTheInitialValue() {
+        var stack = emptyStack();
+
+        var result = stack.reduce(0, (partialResult, element) -> fail());
+
+        assertEquals(0, result);
+    }
+
     private <E> Stack<E> emptyStack() {
         return new Stack<>();
     }

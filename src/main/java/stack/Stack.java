@@ -1,5 +1,6 @@
 package stack;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Stack<E> {
@@ -34,5 +35,9 @@ public class Stack<E> {
 
     public <R> Stack<R> map(Function<E, R> elementMapping) {
         return topNode.mapToStack(elementMapping);
+    }
+
+    public Integer reduce(Integer initialValue, BiFunction<?, ?, ?> reducer) {
+        return initialValue;
     }
 }
