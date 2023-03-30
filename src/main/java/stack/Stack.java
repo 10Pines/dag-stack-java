@@ -15,7 +15,7 @@ public class Stack<E> {
         topNode = new PushedObject<>(anObject, topNode);
     }
 
-    public Object pop() {
+    public E pop() {
         var elementToPop = top();
         topNode = topNode.previous();
         return elementToPop;

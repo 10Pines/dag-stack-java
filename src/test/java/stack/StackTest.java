@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SuppressWarnings("RedundantTypeArguments")
 public class StackTest {
     @Test
     public void newStacksMustBeEmpty() {
@@ -43,14 +44,17 @@ public class StackTest {
 
     @Test
     public void popReturnsLastPushedElement() {
-        var stack = emptyStack();
+        var stack = this.<String>emptyStack();
         var pushedElement = "Something";
         stack.push(pushedElement);
 
         var poppedElement = stack.pop();
 
+        this.<String>mustBeTheStaticTypeOf(poppedElement);
         assertEquals(pushedElement, poppedElement);
     }
+
+    private <E> void mustBeTheStaticTypeOf(E poppedElement) {}
 
     @Test
     public void canStackMoreThanOneElement() {
