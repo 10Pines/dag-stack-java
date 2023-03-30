@@ -1,5 +1,6 @@
 package stack;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class PushedObject<E> extends StackNode<E> {
@@ -49,5 +50,13 @@ public class PushedObject<E> extends StackNode<E> {
         Stack<R> mappedStack = previous.mapToStack(elementMapping);
         mappedStack.push(elementMapping.apply(element));
         return mappedStack;
+    }
+
+    @Override
+    public <R> R reduce(R initialValue, BiFunction<R, E, R> reducer) {
+        if (this.isEmpty())
+            return initialValue;
+
+        return reducer.apply(initialValue, this.element());
     }
 }

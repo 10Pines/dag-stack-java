@@ -16,10 +16,5 @@ public abstract class StackNode<E> {
 
     public abstract <R> Stack<R> mapToStack(Function<E, R> elementMapping);
 
-    public <R> R reduce(R initialValue, BiFunction<R, E, R> reducer) {
-        if (this.isEmpty())
-            return initialValue;
-
-        return reducer.apply(initialValue, this.element());
-    }
+    public abstract <R> R reduce(R initialValue, BiFunction<R, E, R> reducer);
 }
