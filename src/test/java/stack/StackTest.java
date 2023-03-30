@@ -255,26 +255,7 @@ public class StackTest {
     }
 
     @Test
-    public void reducingAnEmptyStackReturnTheInitialValue2() {
-        var stack = emptyStack();
-
-        var result = stack.reduce("hola", (partialResult, element) -> fail());
-
-        assertEquals("hola", result);
-    }
-
-    @Test
     public void reducingAStackWithOneElementReturnsTheElementCombinedWithTheInitialValue() {
-        Stack<Integer> stack = emptyStack();
-        stack.push(1);
-
-        var result = stack.reduce(10, (partialResult, element) -> partialResult + element);
-
-        assertEquals(11, result);
-    }
-
-    @Test
-    public void reducingAStackWithOneElementReturnsTheElementCombinedWithTheInitialValue2() {
         Stack<Integer> stack = emptyStack();
         stack.push(1);
 
