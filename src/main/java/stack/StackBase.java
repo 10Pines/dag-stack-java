@@ -36,9 +36,6 @@ public class StackBase<E> extends StackNode<E> {
 
     @Override
     public <R> R reduce(R initialValue, BiFunction<R, E, R> reducer) {
-        if (this.isEmpty())
-            return initialValue;
-
-        return reducer.apply(initialValue, this.element());
+        return initialValue;
     }
 }
