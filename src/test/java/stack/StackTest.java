@@ -263,6 +263,16 @@ public class StackTest {
         assertEquals("hola", result);
     }
 
+    @Test
+    public void reducingAStackWithOneElementReturnsTheElementCombinedWithTheInitialValue() {
+        Stack<Integer> stack = emptyStack();
+        stack.push(1);
+
+        var result = stack.reduce(10, (partialResult, element) -> partialResult + element);
+
+        assertEquals(11, result);
+    }
+
     private <E> Stack<E> emptyStack() {
         return new Stack<>();
     }

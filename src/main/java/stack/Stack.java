@@ -37,7 +37,10 @@ public class Stack<E> {
         return topNode.mapToStack(elementMapping);
     }
 
-    public <R> R reduce(R initialValue, BiFunction<?, ?, ?> reducer) {
-        return initialValue;
+    public <R> R reduce(R initialValue, BiFunction<R, E, R> reducer) {
+        if (isEmpty())
+            return initialValue;
+
+        return reducer.apply(initialValue, top());
     }
 }
