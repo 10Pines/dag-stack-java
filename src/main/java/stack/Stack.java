@@ -40,4 +40,8 @@ public class Stack<E> {
     public Integer reduce(Integer initialValue, BiFunction<?, ?, ?> reducer) {
         return initialValue;
     }
+
+    public String reduce(String initialValue, BiFunction<?, ?, ?> reducer) {
+        return initialValue;
+    }
 }

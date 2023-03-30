@@ -254,6 +254,15 @@ public class StackTest {
         assertEquals(0, result);
     }
 
+    @Test
+    public void reducingAnEmptyStackReturnTheInitialValue2() {
+        var stack = emptyStack();
+
+        var result = stack.reduce("hola", (partialResult, element) -> fail());
+
+        assertEquals("hola", result);
+    }
+
     private <E> Stack<E> emptyStack() {
         return new Stack<>();
     }
